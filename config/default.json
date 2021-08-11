@@ -1,0 +1,10 @@
+{
+    "main":{
+        "logLevel": {
+            "value": "debug"
+        },
+        "port":{
+            "value": 9000
+        }
+    }
+}

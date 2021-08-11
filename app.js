@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const config = require('config');
+const Logger = require('./utilities/logger').child({ location: './app/app.js' });
 
 // config
-const port = 3000;
+const port = config.get('main.port.value');
 
 // mongoose.Promise = global.Promise
 // mongoose.connect('url', {
@@ -23,22 +25,24 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
-app.get('/ping', (req, res) => {
-    res.send('pong!');
-});
-
 let server;
 function start() {
+    app.get('/ping', (req, res) => {
+        res.send('pong!');
+    });
     server = app.listen(port, () => {
-        console.log(`app started at port:`, port);
+        Logger.info(`app started at port:${port}`);
     });
 }
 
 function stop() {
     server.close();
+    Logger.info('Server closed');
 }
 
 start();
 
-module.exports = start;
-module.exports = stop;
+// Export functions for unit tests
+module.exports = app;
+module.exports.start = start;
+module.exports.stop = stop;
