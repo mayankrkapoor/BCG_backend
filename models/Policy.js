@@ -2,6 +2,7 @@ module.exports = (sequelize, Sequelize) => {
     const Policy = sequelize.define('policy', {
         policy_id: {
             type: Sequelize.INTEGER,
+            primaryKey: true,
         },
         dop: {
             type: Sequelize.DATE,

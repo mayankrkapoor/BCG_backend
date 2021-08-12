@@ -20,6 +20,7 @@ function start() {
     app.get('/ping', (req, res) => {
         res.send('pong!');
     });
+    require('./routes/policy-router')(app);
     server = app.listen(port, () => {
         Logger.info(`app started at port:${port}`);
     });
