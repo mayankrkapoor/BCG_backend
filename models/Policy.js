@@ -1,55 +1,51 @@
-const mongoose = require('mongoose');
+module.exports = (sequelize, Sequelize) => {
+    const Policy = sequelize.define('policy', {
+        policy_id: {
+            type: Sequelize.INTEGER,
+        },
+        dop: {
+            type: Sequelize.DATE,
+        },
+        customer_id: {
+            type: Sequelize.INTEGER,
+        },
+        fuel: {
+            type: Sequelize.STRING,
+        },
+        vehicle_segment: {
+            type: Sequelize.STRING,
+        },
+        premimum: {
+            type: Sequelize.INTEGER,
+        },
+        bodily_injury_liability: {
+            type: Sequelize.INTEGER,
+        },
+        personal_injury_protection: {
+            type: Sequelize.STRING,
+        },
+        property_damage_liability: {
+            type: Sequelize.STRING,
+        },
+        collision: {
+            type: Sequelize.STRING,
+        },
+        comprehensive: {
+            type: Sequelize.STRING,
+        },
+        customer_gender: {
+            type: Sequelize.STRING,
+        },
+        customer_income_group: {
+            type: Sequelize.STRING,
+        },
+        customer_region: {
+            type: Sequelize.STRING,
+        },
+        customer_marital_status: {
+            type: Sequelize.STRING,
+        },
+    });
 
-const Schema = mongoose.Schema;
-
-const Policy = new Schema({
-    policy_id: {
-        type: Number,
-    },
-    dop: {
-        type: String,
-    },
-    customer_id: {
-        type: Number,
-    },
-    fuel: {
-        type: String,
-    },
-    vehicle_segment: {
-        type: String,
-    },
-    premimum: {
-        type: Number,
-    },
-    bodily_injury_liability: {
-        type: Number,
-    },
-    personal_injury_protection: {
-        type: String,
-    },
-    property_damage_liability: {
-        type: String,
-    },
-    collisio: {
-        type: String,
-    },
-    comprehensive: {
-        type: String,
-    },
-    customer_gender: {
-        type: String,
-    },
-    customer_income_group: {
-        type: String,
-    },
-    customer_region: {
-        type: String,
-    },
-    customer_marital_status: {
-        type: String,
-    },
-}, {
-    collection: 'policies',
-});
-
-module.exports = mongoose.model('Policy', Policy);
+    return Policy;
+};
