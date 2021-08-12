@@ -8,15 +8,15 @@ const Logger = require('./utilities/logger').child({ location: './app/app.js' })
 // config
 const port = config.get('main.port.value');
 
-// mongoose.Promise = global.Promise
-// mongoose.connect('url', {
-//     useNewUrlParser : true
-// }).then(() => {
-//     console.log('db connection successful');
-// },
-// error => {
-//     console.log(error)
-// });
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://127.0.0.1:27017/test', {
+    useNewUrlParser: true,
+}).then(() => {
+    Logger.info('db connection successful');
+},
+(error) => {
+    Logger.info(error);
+});
 
 const app = express();
 app.use(bodyParser.json());
