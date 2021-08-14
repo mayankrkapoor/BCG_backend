@@ -24,7 +24,7 @@ function start() {
     server = app.listen(port, () => {
         Logger.info(`app started at port:${port}`);
     });
-    db.sequelize.sync({ force: true }).then(() => {
+    db.sequelize.sync().then(() => {
         Logger.info('Drop and re-sync db.');
     });
 }

@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
         },
         dop: {
-            type: Sequelize.DATE,
+            type: Sequelize.DATEONLY,
         },
         customer_id: {
             type: Sequelize.INTEGER,
@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
         vehicle_segment: {
             type: Sequelize.STRING,
         },
-        premimum: {
+        premium: {
             type: Sequelize.INTEGER,
         },
         bodily_injury_liability: {
@@ -45,6 +45,14 @@ module.exports = (sequelize, Sequelize) => {
         },
         customer_marital_status: {
             type: Sequelize.STRING,
+        },
+        createdAt: {
+            type: Sequelize.DATE,
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        },
+        updatedAt: {
+            type: Sequelize.DATE,
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         },
     });
 

@@ -3,6 +3,7 @@ module.exports = (app) => {
     const router = require('express').Router();
 
     router.get('/:id', policyController.findByPolicyId);
+    router.get('', policyController.findAll);
 
     app.use('/api/policy/', router);
 };

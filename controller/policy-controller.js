@@ -10,20 +10,43 @@ const Policy = db.policies;
 // };
 
 // // Retrieve all policies from the database.
-// exports.findAll = (req, res) => {
+exports.findAll = (req, res) => {
+    Policy.findAll()
+        .then(
+            (data) => {
+                res.send(data);
+            },
+        )
+        .catch(() => {
+            res.status(500).send({
+                message: 'Error retrieving Policies',
+            });
+            Logger.error('error in getting policies');
+        });
+};
 
-// };
+// // Find a single policy with customer id
+exports.findPolicyByCustomer = (req, res) => {
+    const id = req.params.id;
+    Policy.findAll({ where: { customer_id: id } })
+        .then(
+            (data) => {
+                res.send(data);
+            },
+        )
+        .catch(() => {
+            res.status(500).send({
+                message: `Error retrieving Policy with customer id=${id}`,
+            });
+        });
+};
 
-// // Find a single policy with an id
-// exports.findByPolicyId = (req, res) => {
-
-// };
-
-// Find a single policy with a customer id
+// Find a single policy with a policy id
 exports.findByPolicyId = (req, res) => {
     const id = req.params.id;
     Policy.findByPk(id).then((data) => {
         res.send(data);
+        Logger.error(data);
     }).catch((err) => {
         res.status(500).send({
             message: `Error retrieving Policy with id=${id}`,
