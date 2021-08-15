@@ -4,6 +4,7 @@ module.exports = (app) => {
 
     router.get('/:id', policyController.findByPolicyId);
     router.get('', policyController.findAll);
+    router.get('/fuel/:fuel', policyController.findCountByFuel);
 
     app.use('/api/policy/', router);
 };

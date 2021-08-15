@@ -60,12 +60,39 @@ exports.findByPolicyId = (req, res) => {
 
 // };
 
-// // Delete a policy with the specified id in the request
-// exports.delete = (req, res) => {
+exports.findCountByFuel = (req, res) => {
+    const fuel = req.params.fuel;
+    Policy.findAndCountAll({
+        where: {
+            // eslint-disable-next-line object-shorthand
+            fuel: fuel,
+        },
+    }).then((data) => {
+        res.send(data);
+        Logger.error(data.count);
+    }).catch((err) => {
+        res.status(500).send({
+            message: 'Error',
+        });
+        Logger.error(err);
+    });
+};
 
-// };
-
-// // Delete all policies from the database.
-// exports.deleteAll = (req, res) => {
-
-// };
+exports.findCountByYear = (req, res) => {
+    const year = req.params.year;
+    const month = req.params.month;
+    Policy.findAndCountAll({
+        where: {
+            // eslint-disable-next-line object-shorthand
+            fuel: fuel,
+        },
+    }).then((data) => {
+        res.send(data);
+        Logger.error(data.count);
+    }).catch((err) => {
+        res.status(500).send({
+            message: 'Error',
+        });
+        Logger.error(err);
+    });
+};
